@@ -1,12 +1,8 @@
-# This is a testfile for the dash F1-Application. None of the current data represents any real Tracker Data but is just a test for how to update graphs etc.
-
 # Run this app with `python app.py` and
 # visit http://127.0.0.1:8050/ in your web browser.
 import os
 import json
 import pandas as pd
-import numpy as np
-import datetime as dt
 import plotly.express as px
 import plotly.graph_objects as go
 from dash import Dash, html, dcc, Input, Output, State
@@ -15,8 +11,6 @@ from dash.exceptions import PreventUpdate
 import dash_daq as daq
 import dash_bootstrap_components as dbc
 from plotly.subplots import make_subplots
-from itertools import islice
-from datetime import timedelta
 import json
 
 #https://results.elections.europa.eu/en/tools/download-datasheets/
@@ -320,7 +314,7 @@ def render_page_content(pathname):
     elif pathname.split("_")[0] == "/europe":
         return page_european_results(pathname.split("_")[1])
     elif pathname.split("_")[0] == "/ms":
-        return page_memberstate_results(pathname.split("_")[1])
+        return page_memberstate_results(pathname.split("_")[1].upper())
     # If the user tries to reach a different page, return a 404 message
     return [html.H1("404: Not found", className="text-danger"),
             html.Hr(),
@@ -473,4 +467,5 @@ def display_vote_results(prev_years, pathname):
     return [dbc.Row([html.H1("Vote Results")]), dbc.Row([dcc.Graph(figure=fig)]), generate_table(eu_df, 10, "EU-Parliament", ["Group", "Seats", "Seats (%)", "Status", "Update Time"])]
 
 if __name__ == '__main__':
-    app.run_server(debug=False)
+    app.run_server(debug=False, port=27010)
+    #app.run_server(debug=False, host="0.0.0.0", port=27010)
