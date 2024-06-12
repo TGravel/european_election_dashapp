@@ -349,7 +349,7 @@ def update_turnout_plot1(prev_years, limits, pathname):
                     marker_colors=('crimson', 'lightgrey'),
                     hoverinfo='label+percent',
                     values=[voters, 100-voters], domain=dict(x=[0.0, 0.5]), hole=.3, name="Turnout Rate"), row=1, col=1)
-        fig.update_layout(template="plotly_dark", plot_bgcolor='rgba(0, 0, 0, 0)', paper_bgcolor='rgba(0, 0, 0, 0)', height=800, width=1400, font=dict(size=15))
+        fig.update_layout(template="plotly_dark", plot_bgcolor='rgba(0, 0, 0, 0)', paper_bgcolor='rgba(0, 0, 0, 0)', height=560, width=980, font=dict(size=12))
     return fig
 
 @app.callback(Output('hide_year_slider', 'children'),
